@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dental Sonrisa | Dr. Martínez</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --off-white: #f4f8fb;
+      --blue-light: #e8f4fd;
+      --blue: #3a9fd5;
+      --blue-dark: #1a6fa3;
+      --blue-deeper: #0d4e7a;
+      --gray-light: #f0f4f8;
+      --gray: #8fa3b1;
+      --gray-dark: #3d5163;
+      --text: #1e2d3d;
+      --accent: #42c0c0;
+      --shadow: 0 8px 40px rgba(26,111,163,0.10);
+      --radius: 18px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(58,159,213,0.10);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw;
+      height: 68px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--blue-dark);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--gray-dark);
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta {
+      background: var(--blue); color: white;
+      border: none; border-radius: 50px; padding: 0.55rem 1.4rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--blue-dark); transform: translateY(-1px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--blue-dark); border-radius: 2px; transition: 0.3s; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #e8f4fd 0%, #c9e8f8 40%, #d4f0f0 100%);
+      display: flex; align-items: center;
+      padding: 100px 6vw 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(58,159,213,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-bg-circle.c1 { width: 600px; height: 600px; top: -150px; right: -100px; }
+    .hero-bg-circle.c2 { width: 400px; height: 400px; bottom: -80px; left: -80px; background: radial-gradient(circle, rgba(66,192,192,0.15) 0%, transparent 70%); }
+
+    .hero-content {
+      max-width: 560px;
+      animation: fadeUp 0.9s ease both;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; border-radius: 50px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; font-weight: 600; color: var(--blue);
+      box-shadow: 0 2px 12px rgba(58,159,213,0.18);
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before { content: '✦'; font-size: 0.7rem; }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      color: var(--blue-deeper);
+      margin-bottom: 1.2rem;
+    }
+    h1 em { color: var(--blue); font-style: normal; }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--gray-dark);
+      line-height: 1.7; margin-bottom: 2.2rem; font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #25D366; color: white;
+      padding: 1rem 2rem; border-radius: 60px;
+      font-size: 1rem; font-weight: 600; text-decoration: none;
+      box-shadow: 0 6px 30px rgba(37,211,102,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 35px rgba(37,211,102,0.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: white; color: var(--blue-dark);
+      padding: 1rem 1.8rem; border-radius: 60px;
+      font-size: 1rem; font-weight: 600; text-decoration: none;
+      border: 2px solid rgba(58,159,213,0.25);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--blue); background: var(--blue-light); }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 3rem; flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; color: var(--blue-dark); font-weight: 700;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--gray); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+    .hero-image-wrap {
+      flex: 1; display: flex; justify-content: flex-end; align-items: center;
+      padding-left: 4vw;
+    }
+    .hero-img-card {
+      background: white; border-radius: 28px;
+      padding: 2rem; width: 320px;
+      box-shadow: 0 20px 60px rgba(26,111,163,0.14);
+      animation: fadeUp 1.1s 0.2s ease both;
+    }
+    .hero-img-placeholder {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--blue-light), #b9e4f5);
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; margin-bottom: 1rem;
+    }
+    .hero-img-label { font-size: 0.9rem; color: var(--gray-dark); font-weight: 500; }
+    .hero-img-sub { font-size: 0.8rem; color: var(--gray); margin-top: 4px; }
+
+    /* ─── SECTIONS GENERAL ─── */
+    section { padding: 90px 6vw; }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue);
+      background: var(--blue-light); border-radius: 50px;
+      padding: 0.3rem 0.9rem; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--blue-deeper); line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--gray); max-width: 500px;
+      line-height: 1.7; font-weight: 300;
+    }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
+
+    /* ─── SERVICES ─── */
+    #servicios { background: var(--off-white); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: white; border-radius: var(--radius);
+      padding: 2.2rem 1.8rem;
+      box-shadow: var(--shadow);
+      border: 1px solid transparent;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(58,159,213,0.25);
+      box-shadow: 0 16px 50px rgba(26,111,163,0.14);
+    }
+    .service-icon {
+      width: 60px; height: 60px;
+      background: linear-gradient(135deg, var(--blue-light), #c5e8fa);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin-bottom: 1.3rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--blue-deeper); margin-bottom: 0.6rem;
+    }
+    .service-card p { font-size: 0.9rem; color: var(--gray); line-height: 1.65; font-weight: 300; }
+
+    /* ─── ABOUT ─── */
+    #nosotros { background: white; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5vw; align-items: center; }
+    .about-img {
+      background: linear-gradient(160deg, #ddf1fb 0%, #c2e8f8 60%, #b8f0ef 100%);
+      border-radius: 28px; aspect-ratio: 3/4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      box-shadow: 0 20px 60px rgba(26,111,163,0.12);
+      position: relative; overflow: hidden;
+    }
+    .about-img::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 40%; background: linear-gradient(to top, rgba(26,111,163,0.08), transparent);
+    }
+    .about-text .section-sub { max-width: 100%; margin-bottom: 1.5rem; }
+    .about-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    .feature-item { display: flex; align-items: flex-start; gap: 0.9rem; }
+    .feature-dot {
+      width: 28px; height: 28px; min-width: 28px;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; color: white; font-weight: 700;
+    }
+    .feature-text { font-size: 0.9rem; color: var(--gray-dark); line-height: 1.5; font-weight: 400; }
+    .feature-text strong { display: block; color: var(--text); font-weight: 600; margin-bottom: 2px; }
+
+    /* ─── TESTIMONIOS ─── */
+    #testimonios { background: linear-gradient(135deg, #e8f4fd 0%, #d4f0f0 100%); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .testimonial-card {
+      background: white; border-radius: var(--radius);
+      padding: 2rem; box-shadow: var(--shadow);
+      transition: transform 0.3s;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); }
+    .stars { color: #f5a623; font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testimonial-text {
+      font-size: 0.95rem; color: var(--gray-dark);
+      line-height: 1.75; font-style: italic; margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 700; font-size: 1rem;
+    }
+    .author-name { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+    .author-label { font-size: 0.78rem; color: var(--gray); }
+
+    /* ─── UBICACION ─── */
+    #ubicacion { background: white; }
+    .map-container {
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid rgba(58,159,213,0.12);
+      height: 380px;
+    }
+    .map-container iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ─── CONTACTO ─── */
+    #contacto { background: var(--off-white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5vw; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 0.5rem; }
+    .info-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .info-icon {
+      width: 46px; height: 46px; min-width: 46px;
+      background: white; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 16px rgba(26,111,163,0.1);
+    }
+    .info-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray); font-weight: 600; margin-bottom: 3px; }
+    .info-value { font-size: 0.95rem; color: var(--text); font-weight: 500; line-height: 1.5; }
+
+    /* FORM */
+    .contact-form {
+      background: white; border-radius: var(--radius);
+      padding: 2.5rem; box-shadow: var(--shadow);
+    }
+    .form-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--blue-deeper); margin-bottom: 1.8rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.2rem; }
+    .form-group label { font-size: 0.82rem; font-weight: 600; color: var(--gray-dark); }
+    .form-group input, .form-group textarea, .form-group select {
+      border: 1.5px solid #e0eaf2; border-radius: 10px;
+      padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem; color: var(--text);
+      background: var(--off-white); outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--blue); background: white;
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit {
+      width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white; border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--blue-deeper); color: rgba(255,255,255,0.75);
+      padding: 3rem 6vw; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif; font-size: 1.5rem;
+      color: white; margin-bottom: 0.8rem;
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 1.2rem 0; }
+    .footer-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: white; }
+    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.4); margin-top: 1.5rem; }
+
+    /* ─── WHATSAPP FLOAT ─── */
+    .whatsapp-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 62px; height: 62px;
+      background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+      text-decoration: none; transition: transform 0.25s;
+      animation: pulse 2.5s infinite;
+    }
+    .whatsapp-float:hover { transform: scale(1.1); animation: none; }
+    .whatsapp-float svg { width: 34px; height: 34px; fill: white; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 6px 30px rgba(37,211,102,0.5); }
+      50% { box-shadow: 0 6px 45px rgba(37,211,102,0.75); transform: scale(1.04); }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      #hero { flex-direction: column; }
+      .hero-image-wrap { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img { aspect-ratio: 2/1; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 70px 5vw; }
+      nav { padding: 0 5vw; }
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 99;
+      background: white; flex-direction: column;
+      align-items: center; justify-content: center; gap: 2.5rem;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; color: var(--blue-deeper);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--blue); }
+    .mobile-close {
+      position: absolute; top: 22px; right: 6vw;
+      font-size: 1.8rem; cursor: pointer; color: var(--gray-dark); border: none; background: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dental<span>Sonrisa</span></div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/5215500000000?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" class="nav-cta" target="_blank">Agendar cita</a>
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#servicios" class="mobile-link">Servicios</a>
+  <a href="#nosotros" class="mobile-link">Nosotros</a>
+  <a href="#testimonios" class="mobile-link">Testimonios</a>
+  <a href="#ubicacion" class="mobile-link">Ubicación</a>
+  <a href="#contacto" class="mobile-link">Contacto</a>
+  <a href="https://wa.me/5215500000000" target="_blank" style="color:#25D366">📲 WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Consultorio Dental de Confianza</div>
+    <h1>Cuidamos tu<br><em>sonrisa</em> con amor</h1>
+    <p class="hero-sub">En <strong>DentalSonrisa</strong> combinamos tecnología avanzada con un trato humano y cálido. Tu comodidad y salud bucal son nuestra prioridad.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5215500000000?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank" class="btn-primary">
+        <!-- WhatsApp icon -->
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Agendar cita por WhatsApp
+      </a>
+      <a href="#servicios" class="btn-secondary">Ver servicios →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">+2,500</span><span class="stat-label">Pacientes felices</span></div>
+      <div class="stat"><span class="stat-num">15 años</span><span class="stat-label">De experiencia</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Satisfacción</span></div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <div class="hero-img-card">
+      <div class="hero-img-placeholder">🦷</div>
+      <div class="hero-img-label">Dr. Carlos Martínez</div>
+      <div class="hero-img-sub">Cirujano Dentista · 15 años de experiencia</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="section-header centered reveal">
+    <span class="section-tag">Nuestros servicios</span>
+    <h2 class="section-title">Todo lo que tu sonrisa necesita</h2>
+    <p class="section-sub">Ofrecemos tratamientos dentales completos con tecnología de vanguardia y el más alto estándar de calidad.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🪥</div>
+      <h3>Limpieza Dental</h3>
+      <p>Eliminamos el sarro y la placa bacteriana para mantener tus encías y dientes en perfecto estado. Incluye pulido y flúor.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">✨</div>
+      <h3>Blanqueamiento</h3>
+      <p>Recupera el blanco natural de tus dientes con nuestro sistema de blanqueamiento profesional. Resultados visibles desde la primera sesión.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🦷</div>
+      <h3>Ortodoncia</h3>
+      <p>Brackets metálicos, estéticos y alineadores invisibles para una sonrisa perfectamente alineada. Evaluación gratuita.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🔩</div>
+      <h3>Implantes Dentales</h3>
+      <p>Reemplaza dientes perdidos con implantes de titanio de alta durabilidad. La solución más natural y permanente del mercado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="about-grid">
+    <div class="about-img reveal">🦷</div>
+    <div class="about-text reveal">
+      <span class="section-tag">Sobre nosotros</span>
+      <h2 class="section-title">15 años cuidando sonrisas</h2>
+      <p class="section-sub">DentalSonrisa es un consultorio dental familiar ubicado en el corazón de la ciudad. Fundado por el <strong>Dr. Carlos Martínez</strong>, Cirujano Dentista con especialidad en Implantología y Estética Dental por la UNAM.</p>
+      <p class="section-sub">Nuestro enfoque es simple: tratar a cada paciente como si fuera de la familia, con calidez, honestidad y la mejor tecnología disponible.</p>
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-dot">✓</div>
+          <div class="feature-text"><strong>Tecnología digital de punta</strong>Radiografías digitales, scanner 3D y equipos esterilizados al 100%.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot">✓</div>
+          <div class="feature-text"><strong>Ambiente libre de estrés</strong>Hacemos que cada visita sea cómoda y sin dolor, con sedación consciente disponible.</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-dot">✓</div>
+          <div class="feature-text"><strong>Precios justos y transparentes</strong>Sin sorpresas. Te explicamos el plan de tratamiento y costos antes de comenzar.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="section-header centered reveal">
+    <span class="section-tag">Testimonios</span>
+    <h2 class="section-title">Lo que dicen nuestros pacientes</h2>
+    <p class="section-sub">Más de 2,500 familias confían en nosotros para cuidar su salud bucal.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Llevaba años sin ir al dentista por miedo y la experiencia en DentalSonrisa fue completamente diferente. El Dr. Martínez es muy paciente y profesional. ¡Ya no le tengo miedo al dentista!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div>
+          <div class="author-name">María González</div>
+          <div class="author-label">Paciente desde 2019</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Me hicieron los implantes y quedé impresionado con los resultados. Ahora puedo comer todo lo que quiero sin molestias. El proceso fue más rápido de lo que esperaba y el equipo es increíble."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">J</div>
+        <div>
+          <div class="author-name">Juan Hernández</div>
+          <div class="author-label">Implantes dentales</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"El blanqueamiento quedó espectacular. En solo 2 horas mis dientes lucen como nunca. Toda la familia venimos aquí, los precios son muy accesibles y el trato es de primera. Totalmente recomendados."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">S</div>
+        <div>
+          <div class="author-name">Sofía Ramírez</div>
+          <div class="author-label">Blanqueamiento dental</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UBICACION -->
+<section id="ubicacion">
+  <div class="section-header centered reveal">
+    <span class="section-tag">Ubicación</span>
+    <h2 class="section-title">Encuéntranos fácilmente</h2>
+    <p class="section-sub">Estamos en una ubicación céntrica y accesible, con estacionamiento disponible.</p>
+  </div>
+  <div class="map-container reveal">
+    <!-- Reemplaza el src con las coordenadas de tu consultorio -->
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.661198395696!2d-99.16869492394455!3d19.42677574135959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2sCentro%20Hist%C3%B3rico%2C%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1712000000000!5m2!1ses!2smx"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="section-header reveal">
+    <span class="section-tag">Contacto</span>
+    <h2 class="section-title">Estamos aquí para ti</h2>
+    <p class="section-sub">Comunícate con nosotros o llena el formulario y te contactamos a la brevedad.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="info-item">
+        <div class="info-icon">📞</div>
+        <div>
+          <div class="info-label">Teléfono</div>
+          <div class="info-value">(55) 5000-0000<br>(55) 5000-0001</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-label">Dirección</div>
+          <div class="info-value">Av. Insurgentes Sur 1234, Col. del Valle<br>Ciudad de México, CP 03100</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕐</div>
+        <div>
+          <div class="info-label">Horario de atención</div>
+          <div class="info-value">Lunes a Viernes: 9:00 – 19:00<br>Sábados: 9:00 – 14:00</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📧</div>
+        <div>
+          <div class="info-label">Correo electrónico</div>
+          <div class="info-value">contacto@dentalsonrisa.com</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal">
+      <div class="form-title">Solicita tu cita</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre"/>
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" placeholder="(55) 0000-0000"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="tucorreo@ejemplo.com"/>
+      </div>
+      <div class="form-group">
+        <label>Servicio de interés</label>
+        <select>
+          <option value="">Selecciona un servicio...</option>
+          <option>Limpieza dental</option>
+          <option>Blanqueamiento</option>
+          <option>Ortodoncia</option>
+          <option>Implantes dentales</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje (opcional)</label>
+        <textarea placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
+      </div>
+      <button class="form-submit" onclick="alert('¡Gracias! Nos pondremos en contacto contigo pronto. 😊')">Enviar solicitud</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Dental<span>Sonrisa</span></div>
+  <p style="font-size:0.88rem; margin-top:0.3rem;">Dr. Carlos Martínez · Cirujano Dentista</p>
+  <nav class="footer-links">
+    <a href="#hero">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  <p class="footer-copy">© 2024 DentalSonrisa · Todos los derechos reservados.</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5215500000000?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" class="whatsapp-float" target="_blank" aria-label="Contáctanos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+  hamburger.addEventListener('click', () => mobileNav.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
